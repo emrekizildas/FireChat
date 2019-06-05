@@ -1,0 +1,5 @@
+{
+  "name": "FireChat",
+  "displayName": "FireChat",
+  "entryPoint": "./index.js"
+}
