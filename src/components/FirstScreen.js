@@ -18,7 +18,6 @@ class FirstScreen extends Component {
         AsyncStorage.getItem(SAVE_USER_INFO)
             .then(req => JSON.parse(req))
             .then(json => {
-                console.log('Login olan kullanıcı: ', json);
                 if (json !== null) {
                     this.props.login(json.email, json.password)
                 } else {

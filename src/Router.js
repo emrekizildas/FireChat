@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
-import { Router, Scene, Tabs, Stack, Drawer, Actions, Modal } from 'react-native-router-flux';
+import { Button, Icon, Header, Body, Title, Left, Right } from 'native-base'
+import { Router, Scene, Stack } from 'react-native-router-flux';
 
+import { connect } from 'react-redux';
+import { logoutChat } from './actions';
 
 import FirstScreen from './components/FirstScreen';
 import Register from './components/Register';
@@ -8,12 +11,31 @@ import Login from './components/Login';
 import Main from './components/Main';
 import Chat from './components/Chat';
 
-export default class Routerim extends Component {
+class Routerim extends Component {
+    renderNavBar = () => {
+        return (
+            <Header noShadow>
+                <Left>
+                    <Button onPress={() => { this.props.logoutChat() }} transparent>
+                        <Icon name='arrow-back' />
+                    </Button>
+                </Left>
+                <Body>
+                    <Title>Sohbet</Title>
+                </Body>
+                <Right>
+                    <Button transparent>
+                        <Icon name='contact'/>
+                    </Button>
+                </Right>
+            </Header>
+        );
+    }
     render() {
         return (
             <Router>
-                <Stack key="root" hideNavBar>
-                    <Scene key="onboarding" modal={false} >
+                <Stack key="root">
+                    <Scene hideNavBar key="onboarding" modal={false} >
                         <Scene key="firstscreen"
                             hideNavBar
                             component={FirstScreen}
@@ -31,10 +53,15 @@ export default class Routerim extends Component {
                         />
                     </Scene>
 
-                    <Scene key="main" component={Main} ></Scene>
-                    <Scene key="chat" component={Chat} ></Scene>
+                    <Scene hideNavBar key="main" component={Main} ></Scene>
+                    <Scene
+                        key="chat"
+                        component={Chat}
+                        navBar={this.renderNavBar} ></Scene>
                 </Stack>
             </Router>
         )
     }
 }
+
+export default connect(null, { logoutChat })(Routerim)

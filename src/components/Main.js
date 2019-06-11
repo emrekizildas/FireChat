@@ -37,7 +37,7 @@ class Main extends Component {
                                             maxLength={6} keyboardType='number-pad' />
                                     </Item>
                                     <Button
-                                        onPress={() => {this.props.chatStart(this.state.chatid, this.props.user.id); this.state.chatid = '';}}
+                                        onPress={() => {this.props.chatStart(this.state.chatid, this.props.user._id); this.state.chatid = '';}}
                                         block iconLeft style={{ marginTop: 10 }}>
                                         <Icon name="paper-plane"></Icon>
                                         <Text>Sohbete Başla !</Text>

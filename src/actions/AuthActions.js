@@ -20,9 +20,8 @@ export const login = (email, password) => {
             if (email !== '' && password !== '') {
                 dispatch({ type: LOGIN_START });
                 firebase.auth().signInWithEmailAndPassword(email, password).then(user => {
-                    console.log('Başarılı: ', user);
                     const id = user.user._user.uid;
-                    const user_info = { email, password, id };
+                    const user_info = { email: email, password: password, _id: id };
                     getUserData(user, dispatch, user_info);
                 }).catch(error => {
                     console.log('Hatalı:', error);
@@ -48,7 +47,7 @@ export const register = (username, email, password) => {
                         console.log('Register Başarılı: ', user.user._user.uid);
                         dispatch({ type: REGISTER_SUCCESS });
                         const id = user.user._user.uid;
-                        firebase.database().ref('users').child(id).set({ username, email, password, id }).then(success => {
+                        firebase.database().ref('users').child(id).set({ name: username, email: email, password: password, _id: id, avatar: 'https://firebasestorage.googleapis.com/v0/b/kodluyoruz-firechat.appspot.com/o/person-generic.png?alt=media&token=10bbb5f5-8a2b-4b0e-b1eb-9a509d2d5833' }).then(success => {
                             console.log("Kayıt başarılı: ", success);
                         }).catch(error => {
                             console.log("Kayıt başarısız: ", error);

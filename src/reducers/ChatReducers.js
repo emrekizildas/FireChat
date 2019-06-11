@@ -9,7 +9,7 @@ import {
 const INITIAL_STATE = {
   chatid: null,
   messages: [],
-  message: null
+  message: 'Bağlanıyor...'
 };
 
 export default (state = INITIAL_STATE, action) => {

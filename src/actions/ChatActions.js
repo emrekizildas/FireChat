@@ -10,17 +10,20 @@ import {
     CHAT_START
 } from './types';
 
+var users = [];
+
 export const chatStart = (chatid, userid) => {
     return (dispatch) => {
         if (chatid.trim().length == 6) {
             dispatch({ type: CHAT_START });
-            firebase.database().ref('chats').child(chatid).once('value').then((snapshot) => {
+            firebase.database().ref('chats').child(chatid).once('value').then(async (snapshot) => {
+                await getUsers();
                 if (snapshot.val() != null) {
                     dispatch({ type: CHAT_SUCCESS, message: 'Başlatılıyor...', chatid });
                     chatListen(chatid, dispatch);
                 } else {
-                    dispatch({ type: CHAT_SUCCESS, message: chatid + ' grubu oluşturuluyor...' });
-                    firebase.database().ref('chats').child(chatid).push({ msg: 'Grubun ilk mesajı!', userid });
+                    dispatch({ type: CHAT_SUCCESS, message: chatid + ' grubu oluşturuluyor...', chatid });
+                    firebase.database().ref('chats').child(chatid).push({ text: 'Grubun ilk mesajı!', createdAt: new Date(), userid });
                     chatListen(chatid, dispatch);
                 }
             }).catch(error => {
@@ -36,7 +39,7 @@ export const chatStart = (chatid, userid) => {
 export const messageSend = (chatid, message, userid) => {
     return (dispatch) => {
         if (message.trim().length >= 3) {
-            firebase.database().ref('chats').child(chatid).push({ msg: message, userid: userid });
+            firebase.database().ref('chats').child(chatid).push({ text: message, createdAt: new Date(), userid: userid });
         } else {
             Alert.alert('Hata!', 'Lütfen en az 3 karakterli mesaj gönderiniz!');
         }
@@ -49,17 +52,35 @@ export const logoutChat = () => {
         Actions.pop();
     }
 }
-
-const chatListen = (chatid, dispatch) => {
+async function chatListen(chatid, dispatch) {
     var messages = [];
     firebase.database().ref('chats').child(chatid).on('value', (snapshot) => {
         snapshot.forEach((messageItem) => {
-            var item = { message: messageItem.val().msg, user: messageItem.val().userid };
+            var userData = getUserInfo(messageItem.val().userid);
+            var item = { text: messageItem.val().text, _id: messageItem.key, createdAt: messageItem.val().createdAt, user: userData };
             messages = [...messages, item];
         });
         dispatch({ type: CHAT_LISTEN, payload: messages });
-        console.log('Mesajlar: ', messages);
         messages = [];
     });
     Actions.push('chat');
+}
+
+function getUsers() {
+    firebase.database().ref('users').on('value', (snapshot) => {
+        users = [];
+        snapshot.forEach((userItem) => {
+            users.push(userItem.val());
+        });
+    });
+}
+
+function getUserInfo(userid){
+    var userData = {};
+    users.forEach((item) => {
+        if(item._id == userid){
+            userData = item;
+        }
+    });
+    return userData;
 }
