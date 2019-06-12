@@ -31,24 +31,27 @@ class Chat extends Component {
                 messages={this.props.messages}
                 user={{
                     _id: this.props.userid,
+                    name: this.props.username
                 }}
                 text={this.state.messageText}
                 onInputTextChanged={messageText => this.setState({ messageText })}
-                placeholder="Mesajınız..."
+                placeholder="Type a 'secret' message..."
                 onSend={() => this.props.messageSend(this.props.chatid, this.state.messageText, this.props.userid)}
                 showUserAvatar={true}
                 scrollToBottom={true}
                 renderSend={this.renderSend}
                 isLoadingEarlier={true}
-                locale="TR"
+                locale="tr-TR"
                 showAvatarForEveryMessage={true}
                 inverted={false}
+                renderUsernameOnMessage={true}
+                isAnimated={true}
             />
         )
     }
 }
 
 const mapStatsToProps = ({ chatResponse, authResponse }) => {
-    return { loading: chatResponse.loading, userid: authResponse.user._id, chatid: chatResponse.chatid, messages: chatResponse.messages }
+    return { loading: chatResponse.loading, userid: authResponse.user._id, username: authResponse.user.username, chatid: chatResponse.chatid, messages: chatResponse.messages }
 }
 export default connect(mapStatsToProps, { messageSend, logoutChat })(Chat)

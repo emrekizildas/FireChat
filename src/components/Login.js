@@ -26,7 +26,7 @@ class Login extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Giriş Yap</Title>
+                        <Title>Login</Title>
                     </Body>
                 </Header>
                 <Content style={styles.content}>
@@ -39,7 +39,7 @@ class Login extends Component {
                             <Icon style={{ marginBottom: 20, fontSize: 80, color: iOSColors.tealBlue }} name="aperture" ></Icon>
                             <Item rounded style={{ marginBottom: 20 }}>
                                 <Icon style={{ color: iOSColors.blue }} active name='at' />
-                                <Label style={styles.labels}>e-Posta Adresi:</Label>
+                                <Label style={styles.labels}>e-Mail address:</Label>
                                 <Input
                                     value={this.state.email}
                                     onChangeText={(email) => { this.setState({ email }) }}
@@ -48,7 +48,7 @@ class Login extends Component {
                             </Item>
                             <Item rounded style={{ marginBottom: 20 }}>
                                 <Icon style={{ color: iOSColors.blue }} active name='key' />
-                                <Label style={styles.labels}>Şifre:</Label>
+                                <Label style={styles.labels}>Password:</Label>
                                 <Input
                                     value={this.state.password}
                                     onChangeText={(password) => { this.setState({ password }) }}
@@ -59,7 +59,7 @@ class Login extends Component {
                                     onPress={() => this.props.login(this.state.email, this.state.password)}
                                     block iconLeft primary>
                                     <Icon name='log-in' />
-                                    <Text>Giriş Yap</Text>
+                                    <Text>Login</Text>
                                 </Button>
                             </View>
                         </Form>

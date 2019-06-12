@@ -9,7 +9,7 @@ import {
 const INITIAL_STATE = {
   chatid: null,
   messages: [],
-  message: 'Bağlanıyor...'
+  message: 'Connecting...'
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -32,7 +32,7 @@ export default (state = INITIAL_STATE, action) => {
     };
     case CHAT_START:
       return {
-        ...state, loading: true, message: 'Bağlanıyor...'
+        ...state, loading: true, message: 'Connecting...'
       };
 
     default:

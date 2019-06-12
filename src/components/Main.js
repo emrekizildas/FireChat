@@ -27,8 +27,8 @@ class Main extends Component {
                                 :
                                 <Form style={styles.form}>
                                     <Icon style={{ marginBottom: 20, fontSize: 80, color: iOSColors.tealBlue }} name="aperture" ></Icon>
-                                    <Text style={styles.title}>Grup kodunuz nedir?</Text>
-                                    <Text style={{ marginBottom: 5, color: 'gray' }}>Lütfen 6 haneli grup kodunuzu giriniz.</Text>
+                                    <Text style={styles.title}>Type a group code</Text>
+                                    <Text style={{ marginBottom: 5, color: 'gray' }}>Type a random 6-digit group code.</Text>
                                     <Item rounded>
                                         <Icon name="keypad"></Icon>
                                         <Input
@@ -40,7 +40,7 @@ class Main extends Component {
                                         onPress={() => {this.props.chatStart(this.state.chatid, this.props.user._id); this.state.chatid = '';}}
                                         block iconLeft style={{ marginTop: 10 }}>
                                         <Icon name="paper-plane"></Icon>
-                                        <Text>Sohbete Başla !</Text>
+                                        <Text>Start FireChat !</Text>
                                     </Button>
                                 </Form>
                         }

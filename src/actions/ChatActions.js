@@ -19,11 +19,11 @@ export const chatStart = (chatid, userid) => {
             firebase.database().ref('chats').child(chatid).once('value').then(async (snapshot) => {
                 await getUsers();
                 if (snapshot.val() != null) {
-                    dispatch({ type: CHAT_SUCCESS, message: 'Başlatılıyor...', chatid });
+                    dispatch({ type: CHAT_SUCCESS, message: 'Starting...', chatid });
                     chatListen(chatid, dispatch);
                 } else {
-                    dispatch({ type: CHAT_SUCCESS, message: chatid + ' grubu oluşturuluyor...', chatid });
-                    firebase.database().ref('chats').child(chatid).push({ text: 'Grubun ilk mesajı!', createdAt: new Date(), userid });
+                    dispatch({ type: CHAT_SUCCESS, message: chatid + ' groups creating...', chatid });
+                    firebase.database().ref('chats').child(chatid).push({ text: "Hey! I'm using FireChat!", createdAt: new Date(), userid });
                     chatListen(chatid, dispatch);
                 }
             }).catch(error => {
@@ -31,7 +31,7 @@ export const chatStart = (chatid, userid) => {
                 console.log('Hatalı:', error);
             });
         } else {
-            Alert.alert('Dikkat!', 'Lütfen 6 haneli grup kodunu giriniz!')
+            Alert.alert('Warning!', 'You should type a 6-digits group code!')
         }
     }
 }
@@ -41,7 +41,7 @@ export const messageSend = (chatid, message, userid) => {
         if (message.trim().length >= 3) {
             firebase.database().ref('chats').child(chatid).push({ text: message, createdAt: new Date(), userid: userid });
         } else {
-            Alert.alert('Hata!', 'Lütfen en az 3 karakterli mesaj gönderiniz!');
+            Alert.alert('Warning!', 'You should type minimum 3-digits!');
         }
     }
 }
@@ -57,7 +57,7 @@ async function chatListen(chatid, dispatch) {
     firebase.database().ref('chats').child(chatid).on('value', (snapshot) => {
         snapshot.forEach((messageItem) => {
             var userData = getUserInfo(messageItem.val().userid);
-            var item = { text: messageItem.val().text, _id: messageItem.key, createdAt: messageItem.val().createdAt, user: userData };
+            var item = { text: messageItem.val().text, _id: messageItem.key, createdAt: messageItem.val().createdAt, user: {_id: userData._id, name: userData.name } };
             messages = [...messages, item];
         });
         dispatch({ type: CHAT_LISTEN, payload: messages });

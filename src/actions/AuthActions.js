@@ -24,15 +24,15 @@ export const login = (email, password) => {
                     const user_info = { email: email, password: password, _id: id };
                     getUserData(user, dispatch, user_info);
                 }).catch(error => {
-                    console.log('Hatalı:', error);
-                    Alert.alert('Kullanıcları bilgileri hatalı!')
+                    console.log('Error:', error);
+                    Alert.alert('Your password or email was wrong!')
                     dispatch({ type: LOGIN_FAILD });
                 });
             } else {
-                Alert.alert('Lütfen bütün alanları doldurun!')
+                Alert.alert('Please fill all of inputs!')
             }
         } else {
-            Alert.alert('Lütfen doğru bir email adresi giriniz')
+            Alert.alert('You should real e-mail address :)')
         }
     }
 }
@@ -60,13 +60,13 @@ export const register = (username, email, password) => {
                         dispatch({ type: REGISTER_FAILD });
                     });
                 } else {
-                    Alert.alert('Lütfen bütün alanları doldurun!')
+                    Alert.alert('Please, you should fill all of inputs!')
                 }
             } else {
-                Alert.alert('Lütfen doğru bir email adresi giriniz')
+                Alert.alert('Heey! You must type a validate email address!')
             }
         } else {
-            Alert.alert('Şifreniz 6 haneden fazla olmalı!')
+            Alert.alert('We are in 21th century! You should type minimum 6-digits password!')
         }
     }
 }

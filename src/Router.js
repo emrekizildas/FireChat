@@ -21,12 +21,10 @@ class Routerim extends Component {
                     </Button>
                 </Left>
                 <Body>
-                    <Title>Sohbet</Title>
+                    <Title>FireChat</Title>
                 </Body>
                 <Right>
-                    <Button transparent>
-                        <Icon name='contact'/>
-                    </Button>
+                    
                 </Right>
             </Header>
         );

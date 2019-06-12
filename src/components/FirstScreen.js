@@ -45,13 +45,13 @@ class FirstScreen extends Component {
                     </View>
 
                     <View style={{ flex: 2, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
-                        <Text style={styles.textStyle}>Grup kodunuzu girin ve sohbete başlayın!</Text>
+                        <Text style={styles.textStyle}>Enter your group code and start FireChat!</Text>
                         <Button onPress={() => Actions.register()} rounded iconLeft primary style={{ marginTop: 20 }}>
                             <Icon name="arrow-forward"></Icon>
-                            <Text>Başla</Text>
+                            <Text>Join</Text>
                         </Button>
                         <View style={{ ...material.caption, marginTop: 20 }}>
-                            <Text onPress={() => Actions.login()}>Zaten bir hesabın var mı? <Text style={{ color: iOSColors.blue }}>Giriş yap</Text></Text>
+                            <Text onPress={() => Actions.login()}>Do you have already account? <Text style={{ color: iOSColors.blue }}>Login</Text></Text>
                         </View>
                     </View>
                 </Content>

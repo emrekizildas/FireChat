@@ -27,7 +27,7 @@ class Register extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Kayıt Ol</Title>
+                        <Title>Register</Title>
                     </Body>
                 </Header>
                 <Content style={styles.content}>
@@ -35,17 +35,17 @@ class Register extends Component {
                         <Icon style={{ marginBottom: 20, fontSize: 80, color: iOSColors.tealBlue }} name="aperture" ></Icon>
                         <Item rounded style={{ marginBottom: 20 }}>
                             <Icon style={{ color: iOSColors.blue }} active name='at' />
-                            <Label style={styles.labels}>Kullanıcı adı:</Label>
+                            <Label style={styles.labels}>Username:</Label>
                             <Input onChangeText={(username) => { this.setState({ username }) }} />
                         </Item>
                         <Item rounded style={{ marginBottom: 20 }}>
                             <Icon style={{ color: iOSColors.blue }} active name='mail' />
-                            <Label style={styles.labels}>e-Posta:</Label>
+                            <Label style={styles.labels}>e-Mail:</Label>
                             <Input onChangeText={(email) => { this.setState({ email }) }} keyboardType="email-address" />
                         </Item>
                         <Item rounded style={{ marginBottom: 20 }}>
                             <Icon style={{ color: iOSColors.blue }} active name='key' />
-                            <Label style={styles.labels}>Şifre:</Label>
+                            <Label style={styles.labels}>Password:</Label>
                             <Input onChangeText={(password) => { this.setState({ password }) }} secureTextEntry keyboardType="number-pad" />
                         </Item>
                         <View style={styles.buttons}>
@@ -59,7 +59,7 @@ class Register extends Component {
                                 }
                                 block iconLeft primary>
                                 <Icon name='log-in' />
-                                <Text>Kayıt Ol</Text>
+                                <Text>Register</Text>
                             </Button>
                         </View>
                     </Form>
