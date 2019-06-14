@@ -11,19 +11,18 @@ import { Actions } from 'react-native-router-flux';
 const { width, height } = Dimensions.get('window');
 
 class Chat extends Component {
-    renderSend = (sendProps) => {
-        if (sendProps.text.trim().length > 2) {
-            return (
-                <TouchableOpacity style={{ marginBottom: 8, marginRight: 5 }} onPress={() => { this.props.messageSend(this.props.chatid, this.state.messageText, this.props.userid); this.state.messageText = ''; }}>
-                    <Icon name='send' />
-                </TouchableOpacity>
-            );
-        }
-        return null;
+    renderFooter = () => {
+        return (
+            <View style={{ marginBottom: 5, paddingBottom: 5 }}></View>
+        );
+    }
+    state = {
+        messageText: '',
+        messages: []
     }
 
-    state = {
-        messageText: ''
+    onSend() {
+        this.props.messageSend(this.props.chatid, this.state.messageText, this.props.userid);
     }
     render() {
         return (
@@ -36,16 +35,13 @@ class Chat extends Component {
                 text={this.state.messageText}
                 onInputTextChanged={messageText => this.setState({ messageText })}
                 placeholder="Type a 'secret' message..."
-                onSend={() => this.props.messageSend(this.props.chatid, this.state.messageText, this.props.userid)}
+                onSend={() => this.onSend()}
                 showUserAvatar={true}
-                scrollToBottom={true}
-                renderSend={this.renderSend}
-                isLoadingEarlier={true}
-                locale="tr-TR"
                 showAvatarForEveryMessage={true}
-                inverted={false}
+                renderFooter={this.renderFooter}
+                renderCustomView={this.renderFooter}
                 renderUsernameOnMessage={true}
-                isAnimated={true}
+                inverted={false}
             />
         )
     }

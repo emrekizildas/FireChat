@@ -16,7 +16,7 @@ export const chatStart = (chatid, userid) => {
     return (dispatch) => {
         if (chatid.trim().length == 6) {
             dispatch({ type: CHAT_START });
-            firebase.database().ref('chats').child(chatid).once('value').then(async (snapshot) => {
+            firebase.database().ref('chats').child(chatid).limitToLast(25).once('value').then(async (snapshot) => {
                 await getUsers();
                 if (snapshot.val() != null) {
                     dispatch({ type: CHAT_SUCCESS, message: 'Starting...', chatid });
@@ -54,7 +54,7 @@ export const logoutChat = () => {
 }
 async function chatListen(chatid, dispatch) {
     var messages = [];
-    firebase.database().ref('chats').child(chatid).on('value', (snapshot) => {
+    firebase.database().ref('chats').child(chatid).limitToLast(25).on('value', (snapshot) => {
         snapshot.forEach((messageItem) => {
             var userData = getUserInfo(messageItem.val().userid);
             var item = { text: messageItem.val().text, _id: messageItem.key, createdAt: messageItem.val().createdAt, user: {_id: userData._id, name: userData.name } };
