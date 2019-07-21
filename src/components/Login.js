@@ -19,7 +19,10 @@ class Login extends Component {
     render() {
         return (
             <Container style={styles.container}>
-                <Header noShadow style={{ width }}>
+                <Header 
+                noShadow 
+                style={{ width, backgroundColor: iOSColors.red }}
+                androidStatusBarColor={iOSColors.red}>
                     <Left>
                         <Button onPress={() => Actions.pop()} transparent>
                             <Icon name='arrow-back' />
@@ -32,13 +35,13 @@ class Login extends Component {
                 <Content style={styles.content}>
                     {this.props.loading ?
                         <View style={{ flex: 9, justifyContent: 'center' }}>
-                            <ActivityIndicator size="large" color={iOSColors.blue} />
+                            <ActivityIndicator size="large" color={iOSColors.red} />
                         </View>
                         :
                         <Form style={styles.form}>
-                            <Icon style={{ marginBottom: 20, fontSize: 80, color: iOSColors.tealBlue }} name="aperture" ></Icon>
+                            <Icon style={{ marginBottom: 20, fontSize: 80, color: iOSColors.red }} name="aperture" ></Icon>
                             <Item rounded style={{ marginBottom: 20 }}>
-                                <Icon style={{ color: iOSColors.blue }} active name='at' />
+                                <Icon style={{ color: iOSColors.lightGray }} active name='at' />
                                 <Label style={styles.labels}>e-Mail address:</Label>
                                 <Input
                                     value={this.state.email}
@@ -47,7 +50,7 @@ class Login extends Component {
                                 />
                             </Item>
                             <Item rounded style={{ marginBottom: 20 }}>
-                                <Icon style={{ color: iOSColors.blue }} active name='key' />
+                                <Icon style={{ color: iOSColors.lightGray }} active name='key' />
                                 <Label style={styles.labels}>Password:</Label>
                                 <Input
                                     value={this.state.password}
@@ -57,7 +60,7 @@ class Login extends Component {
                             <View style={styles.buttons}>
                                 <Button
                                     onPress={() => this.props.login(this.state.email, this.state.password)}
-                                    block iconLeft primary>
+                                    block iconLeft danger>
                                     <Icon name='log-in' />
                                     <Text>Login</Text>
                                 </Button>

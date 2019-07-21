@@ -10,11 +10,16 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Main from './components/Main';
 import Chat from './components/Chat';
+import { iOSColors } from 'react-native-typography';
 
 class Routerim extends Component {
     renderNavBar = () => {
         return (
-            <Header noShadow>
+            <Header 
+            noShadow
+            androidStatusBarColor={iOSColors.red}
+            style={{backgroundColor: iOSColors.red}}
+            >
                 <Left>
                     <Button onPress={() => { this.props.logoutChat() }} transparent>
                         <Icon name='arrow-back' />

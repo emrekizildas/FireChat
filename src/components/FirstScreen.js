@@ -32,7 +32,7 @@ class FirstScreen extends Component {
             return (
                 <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '' }}>
 
-                    <ActivityIndicator size="large" color={iOSColors.blue} />
+                    <ActivityIndicator size="large" color={iOSColors.red} />
                 </SafeAreaView>
             )
         }
@@ -41,17 +41,17 @@ class FirstScreen extends Component {
             <Container style={styles.container}>
                 <Content style={styles.content}>
                     <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'flex-start' }}>
-                        <Icon style={{ paddingBottom: 20, fontSize: 80, color: iOSColors.tealBlue }} name="aperture" ></Icon>
+                        <Icon style={{ paddingBottom: 20, fontSize: 80, color: iOSColors.red }} name="aperture" ></Icon>
                     </View>
 
                     <View style={{ flex: 2, justifyContent: 'flex-start', alignItems: 'flex-start' }}>
                         <Text style={styles.textStyle}>Enter your group code and start FireChat!</Text>
-                        <Button onPress={() => Actions.register()} rounded iconLeft primary style={{ marginTop: 20 }}>
+                        <Button onPress={() => Actions.register()} rounded iconLeft primary style={{ marginTop: 20 }} danger={true}>
                             <Icon name="arrow-forward"></Icon>
                             <Text>Join</Text>
                         </Button>
                         <View style={{ ...material.caption, marginTop: 20 }}>
-                            <Text onPress={() => Actions.login()}>Do you have already account? <Text style={{ color: iOSColors.blue }}>Login</Text></Text>
+                            <Text onPress={() => Actions.login()}>Do you have already account? <Text style={{ color: iOSColors.red }}>Login</Text></Text>
                         </View>
                     </View>
                 </Content>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     textStyle: {
         ...material.display1,
         ...systemWeights.bold,
-        color: iOSColors.blue,
+        color: iOSColors.black,
         textAlign: 'left',
         width: width * 0.9
     }

@@ -11,6 +11,7 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAILD,
     SAVE_USER_INFO,
+    LOGOUT
 } from './types';
 
 
@@ -68,6 +69,15 @@ export const register = (username, email, password) => {
         } else {
             Alert.alert('We are in 21th century! You should type minimum 6-digits password!')
         }
+    }
+}
+
+export const logoutAccount = () => {
+    return (dispatch) => {
+        firebase.auth().signOut();
+        AsyncStorage.removeItem(SAVE_USER_INFO);
+        dispatch({ type: LOGOUT });
+        Actions.onboarding({ type: 'reset' });
     }
 }
 

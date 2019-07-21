@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Dimensions, TouchableOpacity, StatusBar } from 'react-native'
 import { Text, View, Container, Content, Header, Right, Icon, Button, Body, Title, Card, CardItem, Footer, Input, Left, Form, Item, Label } from 'native-base'
 import { iOSColors } from 'react-native-typography'
-import { GiftedChat } from 'react-native-gifted-chat'
+import { GiftedChat, Bubble } from 'react-native-gifted-chat'
 
 import { connect } from 'react-redux';
 import { messageSend, logoutChat } from '../actions';
@@ -14,6 +14,23 @@ class Chat extends Component {
     renderFooter = () => {
         return (
             <View style={{ marginBottom: 5, paddingBottom: 5 }}></View>
+        );
+    }
+    renderBubble = (props) => {
+        return (
+            <Bubble
+                {...props}
+                textStyle={{
+                    right: {
+                        color: 'white',
+                    },
+                }}
+                wrapperStyle={{
+                    right: {
+                        backgroundColor: iOSColors.red,
+                    },
+                }}
+            />
         );
     }
     state = {
@@ -42,6 +59,7 @@ class Chat extends Component {
                 renderCustomView={this.renderFooter}
                 renderUsernameOnMessage={true}
                 inverted={false}
+                renderBubble={this.renderBubble}
             />
         )
     }

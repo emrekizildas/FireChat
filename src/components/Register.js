@@ -20,7 +20,10 @@ class Register extends Component {
     render() {
         return (
             <Container style={styles.container}>
-                <Header noShadow style={{ width }}>
+                <Header 
+                noShadow 
+                style={{ width, backgroundColor: iOSColors.red }}
+                androidStatusBarColor={iOSColors.red}>
                     <Left>
                         <Button onPress={() => Actions.pop()} transparent>
                             <Icon name='arrow-back' />
@@ -32,19 +35,19 @@ class Register extends Component {
                 </Header>
                 <Content style={styles.content}>
                     <Form style={styles.form}>
-                        <Icon style={{ marginBottom: 20, fontSize: 80, color: iOSColors.tealBlue }} name="aperture" ></Icon>
+                        <Icon style={{ marginBottom: 20, fontSize: 80, color: iOSColors.red }} name="aperture" ></Icon>
                         <Item rounded style={{ marginBottom: 20 }}>
-                            <Icon style={{ color: iOSColors.blue }} active name='at' />
+                            <Icon style={{ color: iOSColors.lightGray }} active name='at' />
                             <Label style={styles.labels}>Username:</Label>
                             <Input onChangeText={(username) => { this.setState({ username }) }} />
                         </Item>
                         <Item rounded style={{ marginBottom: 20 }}>
-                            <Icon style={{ color: iOSColors.blue }} active name='mail' />
+                            <Icon style={{ color: iOSColors.lightGray }} active name='mail' />
                             <Label style={styles.labels}>e-Mail:</Label>
                             <Input onChangeText={(email) => { this.setState({ email }) }} keyboardType="email-address" />
                         </Item>
                         <Item rounded style={{ marginBottom: 20 }}>
-                            <Icon style={{ color: iOSColors.blue }} active name='key' />
+                            <Icon style={{ color: iOSColors.lightGray }} active name='key' />
                             <Label style={styles.labels}>Password:</Label>
                             <Input onChangeText={(password) => { this.setState({ password }) }} secureTextEntry keyboardType="number-pad" />
                         </Item>
@@ -57,7 +60,8 @@ class Register extends Component {
                                     this.state.name
                                 )
                                 }
-                                block iconLeft primary>
+                                danger
+                                block iconLeft>
                                 <Icon name='log-in' />
                                 <Text>Register</Text>
                             </Button>
